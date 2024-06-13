@@ -23,7 +23,7 @@ public class Client {
   private static final QName TITLE = new QName("http://purl.org/dc/terms/","title");
 
   public static void main(String[] args) {
-    LOG.info("Hello world");
+    LOG.info("Start retrieving data from https://zoekservice.overheid.nl");
     HttpClient client = HttpClient.newHttpClient();
     HttpRequest request = HttpRequest.newBuilder()
       .uri(URI.create("https://zoekservice.overheid.nl/sru/Search?operation=searchRetrieve&version=2.0&startRecord=1&maximumRecords=2&x-connection=BWB&query=dcterms.modified%3E=1900-01-01"))
@@ -35,7 +35,6 @@ public class Client {
       XMLInputFactory xmlInputFactory = XMLInputFactory.newInstance();
       XMLEventReader reader = xmlInputFactory.createXMLEventReader(response);
 
-      //System.out.println(response.read());
       while (reader.hasNext()) {
         XMLEvent nextEvent = reader.nextEvent();
         if (nextEvent.isStartElement()) {
