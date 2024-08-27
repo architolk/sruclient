@@ -23,7 +23,8 @@ public class Client {
       };
 
       //records.dump();
-      records.generateCurlTXT();
+      //records.generateCurlTXT();
+      records.generateMetadata();
 
     } catch (Exception e) {
       LOG.error(e.getMessage());

@@ -31,4 +31,12 @@ public class SRURecords {
     }
   }
 
+  public void generateMetadata() {
+    System.out.println("<toestanden>");
+    for (SRURecord record : records) {
+      record.generateMetadata();
+    }
+    System.out.println("</toestanden>");
+  }
+
 }

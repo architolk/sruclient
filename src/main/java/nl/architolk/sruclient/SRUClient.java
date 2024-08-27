@@ -23,6 +23,7 @@ public class SRUClient {
   private static final QName NEXT_RECORD_POSITION = new QName("http://docs.oasis-open.org/ns/search-ws/sruResponse","nextRecordPosition");
   private static final QName RECORD = new QName("http://docs.oasis-open.org/ns/search-ws/sruResponse","record");
   private static final QName TITLE = new QName("http://purl.org/dc/terms/","title");
+  private static final QName TYPE = new QName("http://purl.org/dc/terms/","type");
   private static final QName IDENTIFIER = new QName("http://purl.org/dc/terms/","identifier");
   private static final QName TOESTAND = new QName("http://standaarden.overheid.nl/bwb/terms/","toestand");
   private static final QName TOESTANDLOCATIE = new QName("http://standaarden.overheid.nl/bwb/terms/","locatie_toestand");
@@ -63,6 +64,10 @@ public class SRUClient {
           if (startElement.getName().equals(TITLE)) {
             nextEvent = reader.nextEvent();
             currentRecord.setTitle(nextEvent.asCharacters().getData());
+          }
+          if (startElement.getName().equals(TYPE)) {
+            nextEvent = reader.nextEvent();
+            currentRecord.setType(nextEvent.asCharacters().getData());
           }
           if (startElement.getName().equals(IDENTIFIER)) {
             nextEvent = reader.nextEvent();
