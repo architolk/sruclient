@@ -14,20 +14,26 @@ public class Client {
   public static void main(String[] args) {
     LOG.info("Start retrieving data from https://zoekservice.overheid.nl");
 
-    try {
-      SRURecords records = new SRURecords();
+    if (args.length<1) {
+      LOG.error("Usage: sruclient [dump|txt|xml|meta]");
+    } else {
 
-      long index = START_RECORD;
-      while ((index<=LAST_RECORD) && SRUClient.retrieve(index,MAX_RECORDS,records)) {
-        index+=MAX_RECORDS;
-      };
+      try {
+        SRURecords records = new SRURecords();
 
-      //records.dump();
-      //records.generateCurlTXT();
-      records.generateMetadata();
+        long index = START_RECORD;
+        while ((index<=LAST_RECORD) && SRUClient.retrieve(index,MAX_RECORDS,records)) {
+          index+=MAX_RECORDS;
+        };
 
-    } catch (Exception e) {
-      LOG.error(e.getMessage());
+        if (args[0].matches("dump")) { records.dump(); }
+        if (args[0].matches("txt")) { records.generateCurlTXT(); }
+        if (args[0].matches("xml")) { records.generateCurlXML(); }
+        if (args[0].matches("dump")) { records.generateMetadata(); }
+
+      } catch (Exception e) {
+        LOG.error(e.getMessage());
+      }
     }
   }
 }

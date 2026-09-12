@@ -26,8 +26,8 @@ public class SearchURL {
   }
 
   public static URI create(long start, long length) {
-    //Date currentDate = new Date();
-    Date currentDate = parseDate("2024-01-01");
+    Date currentDate = new Date();
+    //Date currentDate = parseDate("2024-01-01");
     return URI.create(String.format("%s%s%s%s%s%s%s%s%s%s%tY-%11$tm-%11$td"
                                    ,SEARCH_LOCATION,SEARCH_PARAMS
                                    ,SEARCH_COLLECTION_PARAM,COLLECTION
